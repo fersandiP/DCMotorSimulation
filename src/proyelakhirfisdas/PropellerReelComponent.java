@@ -22,7 +22,7 @@ public class PropellerReelComponent extends JComponent{
     private double rotation;
     private double w;
     private boolean direction;
-    private BufferedImage image;
+    private Image image;
     
     
     public PropellerReelComponent(){
@@ -40,7 +40,7 @@ public class PropellerReelComponent extends JComponent{
      private void prepareImage(){
         image = null;
         try {
-            image = ImageIO.read(new File("src/Asset/Propeller_Reel.png"));
+            image = (new ImageIcon(getClass().getResource("/Asset/Propeller_Reel.png"))).getImage();
         } catch (Exception E){
             
         }

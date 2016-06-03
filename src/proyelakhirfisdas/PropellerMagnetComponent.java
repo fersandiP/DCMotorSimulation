@@ -24,7 +24,7 @@ public class PropellerMagnetComponent extends JComponent{
     private double w;
    
     
-    private BufferedImage image;
+    private Image image;
     
     public PropellerMagnetComponent(){
         super();
@@ -41,7 +41,7 @@ public class PropellerMagnetComponent extends JComponent{
     private void prepareImage(){
         image = null;
         try {
-            image = ImageIO.read(new File("src/Asset/Propeller_Magnet.png"));
+            image = (new ImageIcon(getClass().getResource("/Asset/Propeller_Magnet.png"))).getImage();
         } catch (Exception E){
             
         }
