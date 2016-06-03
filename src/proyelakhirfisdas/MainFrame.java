@@ -95,7 +95,6 @@ public class MainFrame extends javax.swing.JFrame {
         rTextField = new javax.swing.JTextField();
         simulasiButton = new javax.swing.JButton();
         arahI = new javax.swing.JCheckBox();
-        arahB = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Simulasi DC Motor");
@@ -137,11 +136,13 @@ public class MainFrame extends javax.swing.JFrame {
         });
         getContentPane().add(simulasiButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, -1, -1));
 
-        arahI.setText("Arah I CW");
-        getContentPane().add(arahI, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
-
-        arahB.setText("Arah B CW");
-        getContentPane().add(arahB, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, -1, -1));
+        arahI.setText("Arah Putar CW");
+        arahI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                arahIActionPerformed(evt);
+            }
+        });
+        getContentPane().add(arahI, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -159,13 +160,17 @@ public class MainFrame extends javax.swing.JFrame {
         formula.lebar = Double.parseDouble(lebarTextField.getText());
         formula.r = Double.parseDouble(rTextField.getText());
         
-        formula.arahB = arahB.isSelected();
+        formula.arahB = arahI.isSelected();
         formula.arahI = arahI.isSelected();
         
         frame.prepareRotation(formula.computeW(), formula.arahB, formula.arahI);
         frame.setVisible(true);
         
     }//GEN-LAST:event_simulasiButtonActionPerformed
+
+    private void arahIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_arahIActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_arahIActionPerformed
 
     /**
      * @param args the command line arguments
@@ -203,7 +208,6 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBox arahB;
     private javax.swing.JCheckBox arahI;
     private javax.swing.JLabel arusLabel;
     private javax.swing.JTextField arusTextField;

@@ -25,9 +25,7 @@ public class DCMotorFrame extends javax.swing.JFrame {
         setResizable(false);
         setSize(1000,800);
           
-        prepareTimer();
-        
-       timer.start();
+        prepareTimer();        
     }
     
     public void prepareRotation(double w, boolean arahB, boolean arahI){
@@ -47,6 +45,7 @@ public class DCMotorFrame extends javax.swing.JFrame {
         
         timer = new Timer(TIMER_DELAY, new TimerListener());
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -66,13 +65,22 @@ public class DCMotorFrame extends javax.swing.JFrame {
         MagnetSN = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                onOpened(evt);
+            }
+        });
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                onDispose(evt);
+            }
+        });
         getContentPane().setLayout(null);
 
         MagnetNS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Asset/Magnet_Side_NS.png"))); // NOI18N
         getContentPane().add(MagnetNS);
         MagnetNS.setBounds(0, 80, 1000, 563);
 
-        propellerMagnetComponent.setPreferredSize(new java.awt.Dimension(1000, 800));
         propellerMagnetComponent.setRequestFocusEnabled(false);
         getContentPane().add(propellerMagnetComponent);
         propellerMagnetComponent.setBounds(0, -40, 1000, 800);
@@ -99,6 +107,14 @@ public class DCMotorFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void onDispose(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_onDispose
+        timer.stop();
+    }//GEN-LAST:event_onDispose
+
+    private void onOpened(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_onOpened
+        timer.start();
+    }//GEN-LAST:event_onOpened
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
